@@ -6,10 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "deploy:worker": "npm run build && npx wrangler deploy",
+    "deploy:worker:dry-run": "npm run build && npx wrangler deploy --dry-run"
   },
   "dependencies": {
     "next": "16.2.9",
+    "pdf-lib": "^1.17.1",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },

@@ -20,7 +20,7 @@ const footerColumns = [
   {
     title: "Support",
     links: [
-      { label: "Contact", href: "mailto:hello@precisionpdf.pages" },
+      { label: "Contact", href: "/contact" },
       { label: "Refund", href: "mailto:hello@precisionpdf.pages?subject=Refund%20request" },
     ],
   },
@@ -37,7 +37,7 @@ const footerColumns = [
 export function SiteShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-[linear-gradient(180deg,#f8fafc,#f1f5f9)] text-slate-900">
-      <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/88 backdrop-blur-xl">
+      <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/92 shadow-[0_8px_24px_rgba(15,23,42,0.04)] backdrop-blur-xl">
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-6 lg:px-8">
           <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold tracking-tight text-slate-950">
             <span className="h-2.5 w-2.5 rounded-full bg-blue-600 shadow-[0_0_0_4px_rgba(37,99,235,0.12)]" />
@@ -45,7 +45,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
           </Link>
           <nav className="hidden items-center gap-6 text-sm text-slate-600 md:flex">
             {navLinks.map((link) => (
-              <Link key={link.label} href={link.href} className="transition-colors hover:text-slate-950">
+              <Link
+                key={link.label}
+                href={link.href}
+                className="rounded-full px-3 py-1.5 transition-colors hover:bg-slate-100 hover:text-slate-950"
+              >
                 {link.label}
               </Link>
             ))}
@@ -54,7 +58,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             href="/workspace"
             className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50"
           >
-            Sign In
+            Open workspace
           </Link>
         </div>
       </header>
@@ -89,11 +93,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
                     <div className="space-y-2 text-sm text-slate-600">
                       {column.links.map((link) =>
                         link.href.startsWith("mailto:") ? (
-                          <a key={link.label} href={link.href} className="block transition hover:text-slate-950">
+                          <a key={link.label} href={link.href} className="block rounded-lg px-2 py-1 transition hover:bg-slate-50 hover:text-slate-950">
                             {link.label}
                           </a>
                         ) : (
-                          <Link key={link.label} href={link.href} className="block transition hover:text-slate-950">
+                          <Link key={link.label} href={link.href} className="block rounded-lg px-2 py-1 transition hover:bg-slate-50 hover:text-slate-950">
                             {link.label}
                           </Link>
                         ),
