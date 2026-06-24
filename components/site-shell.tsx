@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
+import { LoginModal } from "@/app/components/login-modal";
 
 const navLinks = [
   { href: "/#tools", label: "Tools" },
@@ -35,6 +38,7 @@ const footerColumns = [
 ];
 
 export function SiteShell({ children }: { children: ReactNode }) {
+  const [loginOpen, setLoginOpen] = useState(false);
   return (
     <div className="min-h-screen bg-[linear-gradient(180deg,#f8fafc,#f1f5f9)] text-slate-900">
       <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/92 shadow-[0_8px_24px_rgba(15,23,42,0.04)] backdrop-blur-xl">
@@ -54,12 +58,20 @@ export function SiteShell({ children }: { children: ReactNode }) {
               </Link>
             ))}
           </nav>
-          <Link
-            href="/workspace"
-            className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50"
-          >
-            Open workspace
-          </Link>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setLoginOpen(true)}
+              className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50"
+            >
+              Sign In
+            </button>
+            <Link
+              href="/workspace"
+              className="inline-flex items-center rounded-full border border-blue-200 bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+            >
+              Open workspace
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -115,6 +127,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
           </div>
         </div>
       </footer>
+
+      <LoginModal isOpen={loginOpen} onClose={() => setLoginOpen(false)} />
     </div>
   );
 }

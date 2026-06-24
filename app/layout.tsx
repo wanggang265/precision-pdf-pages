@@ -34,6 +34,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+      <head>
+        <link rel="preconnect" href="https://accounts.google.com" />
+      </head>
       <body className="min-h-screen bg-slate-50 text-slate-900">
         <Analytics />
         {children}
