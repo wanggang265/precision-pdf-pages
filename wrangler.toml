@@ -1,7 +1,16 @@
 name = "precision-pdf-pages"
 main = "worker/index.ts"
 compatibility_date = "2026-06-19"
+workers_dev = true
 
 [assets]
 directory = "./out"
 binding = "ASSETS"
+
+[[routes]]
+pattern = "removepdfpages.net"
+custom_domain = true
+
+[[routes]]
+pattern = "www.removepdfpages.net"
+custom_domain = true

@@ -6,6 +6,7 @@ export interface Env {
 
 const BACKEND_ORIGIN = "https://removepdfpages-workers.gw471210.workers.dev";
 const HSTS_VALUE = "max-age=31536000; includeSubDomains; preload";
+const CANONICAL_HOST = "removepdfpages.net";
 
 function isInsecureRequest(request: Request, url: URL): boolean {
   // The URL protocol may be http: when Cloudflare serves the request over HTTP
@@ -41,7 +42,14 @@ export default {
       return Response.redirect(httpsUrl.toString(), 308);
     }
 
-    // 2) API proxy to backend Workers.
+    // 2) Canonicalize www to non-www.
+    if (url.host === `www.${CANONICAL_HOST}`) {
+      const canonicalUrl = new URL(url.toString());
+      canonicalUrl.host = CANONICAL_HOST;
+      return Response.redirect(canonicalUrl.toString(), 301);
+    }
+
+    // 3) API proxy to backend Workers.
     if (url.pathname.startsWith('/api/')) {
       const target = `${BACKEND_ORIGIN}${url.pathname}${url.search}`;
       const headers = new Headers(request.headers);
@@ -61,7 +69,7 @@ export default {
       }));
     }
 
-    // 3) Static assets from the Next.js export.
+    // 4) Static assets from the Next.js export.
     const assetResponse = await env.ASSETS.fetch(request);
     return withHsts(assetResponse);
   },
