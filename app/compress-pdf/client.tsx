@@ -29,6 +29,12 @@ export function CompressPdfClient() {
           mode="single"
           actionLabel="Compress PDF"
           toolType="compress"
+          showPreview
+          previewProps={{
+            title: "Page preview",
+            description: "Preview the pages that will be compressed.",
+            readOnly: true,
+          }}
           validate={({ files }) => {
             if (files.length === 0) return "Upload a PDF first";
             return null;

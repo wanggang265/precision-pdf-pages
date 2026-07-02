@@ -35,6 +35,12 @@ export type PdfToolClientProps = {
   process: (args: { files: File[]; pages: PdfPageOption[]; options: unknown }) => Promise<ProcessedResult>;
   statusMessages?: Partial<Record<PdfToolStatus, { label: string; note: string }>>;
   maxFileSizeBytes?: number;
+  showPreview?: boolean;
+  previewProps?: {
+    title?: string;
+    description?: string;
+    readOnly?: boolean;
+  };
 };
 
 const defaultFileInfo: PdfToolFileInfo = {
@@ -83,6 +89,8 @@ export function PdfToolClient({
   process,
   statusMessages,
   maxFileSizeBytes = MAX_FILE_SIZE,
+  showPreview,
+  previewProps,
 }: PdfToolClientProps) {
   const [status, setStatus] = useState<PdfToolStatus>("ready");
   const [files, setFiles] = useState<File[]>([]);
@@ -95,6 +103,7 @@ export function PdfToolClient({
   const [anonId, setAnonId] = useState<string | null>(null);
   const resultUrlRef = useRef<string | null>(null);
   const uploadTimers = useRef<number[]>([]);
+  const previewRef = useRef<HTMLDivElement | null>(null);
 
   const blocked = !["ready", "unsupported", "over-limit", "credits"].includes(status);
   const canProcess =
@@ -263,7 +272,12 @@ export function PdfToolClient({
           selected: false,
         })),
       );
-      const timer = window.setTimeout(() => setStatus("ready"), 700);
+      const timer = window.setTimeout(() => {
+        setStatus("ready");
+        if (showPreview && previewRef.current) {
+          previewRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 700);
       uploadTimers.current.push(timer);
     } catch {
       setStatus("unsupported");
@@ -334,17 +348,26 @@ export function PdfToolClient({
         onReset={reset}
       />
 
-      {renderOptions?.({ files, status, pages, setPages, options, setOptions })}
+      {renderOptions && (
+        <div ref={previewRef}>
+          {renderOptions({ files, status, pages, setPages, options, setOptions })}
+        </div>
+      )}
 
-      {pages.length > 0 && !renderOptions && (
-        <PdfToolPagePicker
-          pages={pages}
-          file={files[0]}
-          blocked={blocked}
-          onToggle={togglePage}
-          onSelectAll={selectAll}
-          onClearSelection={clearSelection}
-        />
+      {pages.length > 0 && (showPreview || !renderOptions) && (
+        <div ref={!renderOptions ? previewRef : undefined}>
+          <PdfToolPagePicker
+            pages={pages}
+            file={files[0]}
+            blocked={blocked}
+            onToggle={togglePage}
+            onSelectAll={selectAll}
+            onClearSelection={clearSelection}
+            title={previewProps?.title}
+            description={previewProps?.description}
+            readOnly={previewProps?.readOnly}
+          />
+        </div>
       )}
 
       <PdfToolActions

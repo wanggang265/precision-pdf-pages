@@ -1,9 +1,23 @@
 "use client";
 
 import { PDFDocument } from "pdf-lib";
+import { PdfThumbnail } from "@/components/pdf-preview/pdf-thumbnail";
 import { PdfToolClient } from "@/components/pdf-tool/pdf-tool-client";
 import { PdfToolPageLayout } from "@/components/pdf-tool/pdf-tool-page-layout";
 import type { ProcessedResult } from "@/components/pdf-tool/pdf-tool-types";
+
+function formatFileSize(bytes: number) {
+  if (!Number.isFinite(bytes) || bytes <= 0) return "0 B";
+  const units = ["B", "KB", "MB", "GB"];
+  let size = bytes;
+  let unitIndex = 0;
+  while (size >= 1024 && unitIndex < units.length - 1) {
+    size /= 1024;
+    unitIndex += 1;
+  }
+  const fractionDigits = unitIndex === 0 ? 0 : size < 10 ? 1 : 0;
+  return `${size.toFixed(fractionDigits)} ${units[unitIndex]}`;
+}
 
 export function MergePdfClient() {
   return (
@@ -21,6 +35,42 @@ export function MergePdfClient() {
             return null;
           }}
           getOutputName={() => "merged.pdf"}
+          renderOptions={({ files }) => {
+            if (files.length === 0) return null;
+            return (
+              <div className="space-y-3">
+                <div>
+                  <h3 className="text-base font-semibold text-slate-950">File preview</h3>
+                  <p className="text-sm text-slate-600">
+                    Files will be merged in the order shown below.
+                  </p>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  {files.map((file, index) => (
+                    <div
+                      key={`${file.name}-${index}`}
+                      className="rounded-[22px] border border-slate-200 bg-white p-3 shadow-[0_4px_12px_rgba(15,23,42,0.03)]"
+                    >
+                      <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+                        File {index + 1}
+                      </div>
+                      <div className="mt-1 text-sm font-semibold text-slate-950 line-clamp-1">{file.name}</div>
+                      <div className="mt-3 overflow-hidden rounded-[18px] border border-slate-200 bg-[linear-gradient(180deg,#f8fafc,#ffffff)] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.75)]">
+                        <PdfThumbnail
+                          file={file}
+                          pageNumber={1}
+                          cacheKey={file.name}
+                          width={140}
+                          className="aspect-[3/4] w-full rounded-xl bg-white"
+                        />
+                      </div>
+                      <div className="mt-3 text-xs text-slate-500">{formatFileSize(file.size)}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          }}
           process={async ({ files }): Promise<ProcessedResult> => {
             const merged = await PDFDocument.create();
             let totalPages = 0;

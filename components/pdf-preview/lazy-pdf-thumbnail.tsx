@@ -42,6 +42,19 @@ export function LazyPdfThumbnail({
 
     observer.observe(element);
 
+    // Force a synchronous check in case the element is already in viewport
+    // but the observer callback has not fired yet (common after hydration).
+    const rect = element.getBoundingClientRect();
+    const inViewport =
+      rect.top < window.innerHeight + parseInt(rootMargin, 10) &&
+      rect.bottom > -parseInt(rootMargin, 10) &&
+      rect.width > 0 &&
+      rect.height > 0;
+    if (inViewport) {
+      setIsVisible(true);
+      setHasBeenVisible(true);
+    }
+
     return () => {
       observer.disconnect();
     };

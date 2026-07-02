@@ -42,6 +42,12 @@ export function SplitPdfClient() {
           mode="single"
           actionLabel="Split PDF"
           toolType="split"
+          showPreview
+          previewProps={{
+            title: "Page preview",
+            description: "Preview every page before entering the ranges to split.",
+            readOnly: true,
+          }}
           renderOptions={({ files, status, pages, options, setOptions }) => {
             const blocked = !["ready", "unsupported", "over-limit", "credits"].includes(status);
             return (
