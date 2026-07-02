@@ -12,6 +12,9 @@ import type {
   WorkspaceStatusInfo,
 } from "@/components/workspace/workspace-types";
 
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "https://removepdfpages-workers.gw471210.workers.dev";
+const ANON_ID_STORAGE_KEY = "removepdfpages_anon_id";
+
 const initialPages: WorkspacePage[] = [];
 
 const defaultFileInfo: WorkspaceFileInfo = {
@@ -76,8 +79,10 @@ export function WorkspaceClient() {
   const [fileInfo, setFileInfo] = useState<WorkspaceFileInfo>(defaultFileInfo);
   const [sourceBytes, setSourceBytes] = useState<Uint8Array | null>(null);
   const [sourceFileName, setSourceFileName] = useState<string>("");
+  const [sourceFile, setSourceFile] = useState<File | null>(null);
   const [resultBytes, setResultBytes] = useState<Uint8Array | null>(null);
   const [resultFileName, setResultFileName] = useState<string>("");
+  const [anonId, setAnonId] = useState<string | null>(null);
   const resultUrlRef = useRef<string | null>(null);
   const uploadTimers = useRef<number[]>([]);
 
@@ -110,6 +115,39 @@ export function WorkspaceClient() {
     if (resultUrlRef.current) {
       URL.revokeObjectURL(resultUrlRef.current);
       resultUrlRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    let storedAnonId = window.localStorage.getItem(ANON_ID_STORAGE_KEY);
+    if (!storedAnonId) {
+      storedAnonId = crypto.randomUUID();
+      window.localStorage.setItem(ANON_ID_STORAGE_KEY, storedAnonId);
+    }
+    setAnonId(storedAnonId);
+  }, []);
+
+  const reportUsage = async (pagesProcessed: number, fileSize: number) => {
+    try {
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
+      if (anonId) {
+        headers["x-anon-id"] = anonId;
+      }
+
+      await fetch(`${API_BASE}/api/usage`, {
+        method: "POST",
+        credentials: "include",
+        headers,
+        body: JSON.stringify({
+          pages_processed: pagesProcessed,
+          file_size: fileSize,
+          tool_type: "remove",
+          ...(anonId ? { anon_id: anonId } : {}),
+        }),
+      });
+    } catch {
+      // Usage reporting is best-effort and must not block the user flow.
     }
   };
 
@@ -184,6 +222,7 @@ export function WorkspaceClient() {
       setPages(createPages(pageCountValue, false));
       setSourceBytes(new Uint8Array(arrayBuffer));
       setSourceFileName(file.name);
+      setSourceFile(file);
       setFileInfo({
         name: file.name,
         sizeLabel: formatFileSize(file.size),
@@ -242,6 +281,8 @@ export function WorkspaceClient() {
     setStatus("processing");
 
     try {
+      const pagesProcessed = selectedCount;
+      const fileSize = sourceBytes.byteLength;
       const sourcePdf = await PDFDocument.load(sourceBytes);
       const keptPageIndexes = pages
         .map((page, index) => ({ page, index }))
@@ -257,6 +298,7 @@ export function WorkspaceClient() {
       setResultBytes(cleanedBytes);
       setResultFileName(outputName);
       setStatus("success");
+      void reportUsage(pagesProcessed, fileSize);
     } catch {
       setStatus("unsupported");
       setResultBytes(null);
@@ -272,6 +314,7 @@ export function WorkspaceClient() {
     setFileInfo(defaultFileInfo);
     setSourceBytes(null);
     setSourceFileName("");
+    setSourceFile(null);
     setResultBytes(null);
     setResultFileName("");
   };
@@ -296,6 +339,7 @@ export function WorkspaceClient() {
 
       <WorkspacePagePicker
         pages={pages}
+        file={sourceFile || undefined}
         blocked={blocked}
         onToggle={togglePage}
         onSelectAll={selectAll}

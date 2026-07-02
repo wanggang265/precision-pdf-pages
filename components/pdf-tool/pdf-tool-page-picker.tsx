@@ -2,14 +2,14 @@
 
 import { LazyPdfThumbnail } from "@/components/pdf-preview/lazy-pdf-thumbnail";
 
-type WorkspacePage = {
+type PdfPage = {
   id: number;
   label: string;
   selected: boolean;
 };
 
-type WorkspacePagePickerProps = {
-  pages: WorkspacePage[];
+type PdfToolPagePickerProps = {
+  pages: PdfPage[];
   file?: File;
   blocked: boolean;
   onToggle: (id: number) => void;
@@ -17,13 +17,15 @@ type WorkspacePagePickerProps = {
   onClearSelection: () => void;
 };
 
-export function WorkspacePagePicker({ pages, file, blocked, onToggle, onSelectAll, onClearSelection }: WorkspacePagePickerProps) {
+export function PdfToolPagePicker({ pages, file, blocked, onToggle, onSelectAll, onClearSelection }: PdfToolPagePickerProps) {
+  const selectedCount = pages.filter((p) => p.selected).length;
+
   return (
     <div className="space-y-3">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h3 className="text-base font-semibold text-slate-950">Page picker</h3>
-          <p className="text-sm text-slate-600">Select the pages you want to remove.</p>
+          <p className="text-sm text-slate-600">Select the pages you want to extract.</p>
         </div>
         <div className="flex gap-2">
           <button
@@ -68,7 +70,7 @@ export function WorkspacePagePicker({ pages, file, blocked, onToggle, onSelectAl
                   page.selected ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-500"
                 }`}
               >
-                {page.selected ? "Selected" : "Keep"}
+                {page.selected ? "Selected" : "Skip"}
               </div>
             </div>
 
@@ -89,12 +91,16 @@ export function WorkspacePagePicker({ pages, file, blocked, onToggle, onSelectAl
             </div>
 
             <div className="mt-3 flex items-center justify-between text-xs text-slate-500">
-              <span>{page.selected ? "Marked for removal" : "Will be kept"}</span>
+              <span>{page.selected ? "Will be extracted" : "Will be skipped"}</span>
               <span className="font-medium text-slate-400">{index + 1}/{pages.length}</span>
             </div>
           </button>
         ))}
       </div>
+
+      {selectedCount > 0 ? (
+        <p className="text-xs font-medium text-slate-500">{selectedCount} pages selected for extraction.</p>
+      ) : null}
     </div>
   );
 }

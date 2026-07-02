@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 const heroStats = [
-  { label: "Workflow", value: "Upload → pick → delete" },
-  { label: "Free tier", value: "20 MB · 200 pages" },
-  { label: "Privacy", value: "Anonymous jobs allowed" },
+  { label: "Tools", value: "Remove, split, merge, extract, compress" },
+  { label: "Free tier", value: "20 MB \u00b7 200 pages" },
+  { label: "Privacy", value: "Browser-based processing" },
 ];
 
 export function HomeHero() {
@@ -12,26 +12,26 @@ export function HomeHero() {
       <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 py-12 sm:px-6 lg:grid-cols-[1.08fr_.92fr] lg:px-8 lg:py-16">
         <div className="flex flex-col justify-center">
           <div className="inline-flex w-fit rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-blue-700">
-            Single-purpose PDF utility
+            Free online PDF utilities
           </div>
-          <h1 className="mt-4 max-w-[11ch] text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-            Remove PDF pages in seconds
+          <h1 className="mt-4 max-w-[14ch] text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
+            Free PDF tools in your browser
           </h1>
           <p className="mt-4 max-w-xl text-lg leading-8 text-slate-600">
-            Upload a PDF, mark the pages you do not need, and download a cleaned file in a simple one-purpose flow.
+            Remove, split, merge, extract, and compress PDFs without uploading them to a server. Fast, private, and no signup needed.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
-              href="/workspace"
+              href="/#tools"
               className="inline-flex items-center rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(37,99,235,0.24)] transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-[0_16px_36px_rgba(37,99,235,0.28)] active:translate-y-0"
             >
-              Upload PDF
+              Browse tools
             </Link>
             <Link
-              href="#how-it-works"
+              href="/workspace"
               className="inline-flex items-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 hover:shadow-sm active:translate-y-0"
             >
-              Learn more
+              Remove pages
             </Link>
           </div>
           <div className="mt-5 flex flex-wrap gap-2">
