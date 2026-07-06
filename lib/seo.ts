@@ -73,11 +73,6 @@ export function buildSoftwareApplicationSchema(config: ToolSchemaConfig) {
     featureList: config.featureList || [config.name],
     url: config.url,
     softwareVersion: "1.0.0",
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      ratingCount: "120",
-    },
   };
 }
 

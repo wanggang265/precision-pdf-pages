@@ -29,6 +29,21 @@ function withHsts(response: Response): Response {
   });
 }
 
+function withCacheHeaders(response: Response, pathname: string): Response {
+  const headers = new Headers(response.headers);
+  if (pathname.startsWith('/_next/static/')) {
+    headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+  } else if (pathname.endsWith('.html') || pathname === '/' || pathname.endsWith('/')) {
+    // 页面 HTML 保持短缓存，避免发版后用户看到旧版本
+    headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
+  }
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
@@ -71,6 +86,6 @@ export default {
 
     // 4) Static assets from the Next.js export.
     const assetResponse = await env.ASSETS.fetch(request);
-    return withHsts(assetResponse);
+    return withHsts(withCacheHeaders(assetResponse, url.pathname));
   },
 };

@@ -15,10 +15,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${siteUrl}/workspace/`,
+      url: `${siteUrl}/remove-pdf-pages/`,
       lastModified: now,
       changeFrequency: "weekly",
-      priority: 0.9,
+      priority: 1,
     },
     {
       url: `${siteUrl}/split-pdf/`,

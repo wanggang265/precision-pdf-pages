@@ -6,6 +6,7 @@ const tools = [
     title: "Remove PDF Pages",
     description: "Delete pages you do not need from any PDF.",
     badge: "Core tool",
+    learnMore: "/remove-pdf-pages/",
   },
   {
     href: "/split-pdf/",
@@ -42,19 +43,32 @@ export function HomeToolGrid() {
         </div>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {tools.map((tool) => (
-            <Link
+            <div
               key={tool.href}
-              href={tool.href}
-              className="group relative rounded-[24px] border border-slate-200 bg-[linear-gradient(180deg,#ffffff,#f8fafc)] p-5 shadow-[0_8px_22px_rgba(15,23,42,0.04)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(15,23,42,0.06)]"
+              className="group relative flex flex-col rounded-[24px] border border-slate-200 bg-[linear-gradient(180deg,#ffffff,#f8fafc)] p-5 shadow-[0_8px_22px_rgba(15,23,42,0.04)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(15,23,42,0.06)]"
             >
               {tool.badge ? (
                 <span className="absolute right-4 top-4 inline-flex rounded-full border border-blue-100 bg-blue-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-700">
                   {tool.badge}
                 </span>
               ) : null}
-              <h3 className="text-base font-semibold text-slate-950 group-hover:text-blue-700">{tool.title}</h3>
+              <h3 className="text-base font-semibold text-slate-950">
+                <Link href={tool.href} className="hover:text-blue-700">
+                  {tool.title}
+                </Link>
+              </h3>
               <p className="mt-2 text-sm leading-6 text-slate-600">{tool.description}</p>
-            </Link>
+              <div className="mt-auto flex flex-wrap items-center gap-4 pt-4">
+                <Link href={tool.href} className="text-sm font-semibold text-blue-600 hover:text-blue-700">
+                  Open tool →
+                </Link>
+                {tool.learnMore ? (
+                  <Link href={tool.learnMore} className="text-sm font-semibold text-slate-500 hover:text-slate-700">
+                    Learn more
+                  </Link>
+                ) : null}
+              </div>
+            </div>
           ))}
         </div>
       </div>
