@@ -5,13 +5,15 @@ import { RemovePdfFaq, removePdfFaqItems } from "@/components/remove-pdf-pages/l
 import { RemovePdfHero } from "@/components/remove-pdf-pages/landing-hero";
 import { RemovePdfHowItWorks } from "@/components/remove-pdf-pages/landing-how-it-works";
 import { RemovePdfLimits } from "@/components/remove-pdf-pages/landing-limits";
+import { RemovePdfUseCases } from "@/components/remove-pdf-pages/landing-use-cases";
 import { RemovePdfWhatIs } from "@/components/remove-pdf-pages/landing-what-is";
+import { RemovePdfWhyChoose } from "@/components/remove-pdf-pages/landing-why-choose";
 import { buildMetadata, buildSoftwareApplicationSchema, SITE_URL } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Remove Pages from PDF — Free Online PDF Page Remover (2026)",
   description:
-    "Remove pages from any PDF in seconds. No signup, no upload to a server. Free for files up to 20 MB and 200 pages.",
+    "Remove pages from any PDF in seconds. No signup, no upload to a server, and no watermarks. Free for files up to 20 MB and 200 pages. Works on Mac, Windows, and mobile.",
   canonical: "/remove-pdf-pages/",
   keywords: [
     "remove pages from pdf",
@@ -25,7 +27,7 @@ export const metadata = buildMetadata({
 const softwareSchema = buildSoftwareApplicationSchema({
   name: "Remove PDF Pages",
   description:
-    "Remove pages from any PDF in seconds. No signup, no upload to a server. Free for files up to 20 MB and 200 pages.",
+    "Remove pages from any PDF in seconds. No signup, no upload to a server, and no watermarks. Free for files up to 20 MB and 200 pages. Works on Mac, Windows, and mobile.",
   url: `${SITE_URL}/remove-pdf-pages/`,
   featureList: [
     "Remove PDF pages",
@@ -71,14 +73,35 @@ const faqPageSchema = {
   })),
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: `${SITE_URL}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Remove PDF Pages",
+      item: `${SITE_URL}/remove-pdf-pages/`,
+    },
+  ],
+};
+
 export default function RemovePdfPagesPage() {
   return (
     <SiteShell>
-      <JsonLdScript data={[softwareSchema, howToSchema, faqPageSchema]} />
+      <JsonLdScript data={[softwareSchema, howToSchema, faqPageSchema, breadcrumbSchema]} />
       <RemovePdfHero />
       <RemovePdfWhatIs />
       <RemovePdfHowItWorks />
       <RemovePdfLimits />
+      <RemovePdfUseCases />
+      <RemovePdfWhyChoose />
       <RemovePdfFaq />
       <RemovePdfCta />
     </SiteShell>

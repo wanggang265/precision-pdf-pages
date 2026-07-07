@@ -12,22 +12,42 @@ export const removePdfFaqItems = [
   {
     question: "Is it safe to remove PDF pages online?",
     answer:
-      "For free-tier jobs, your PDF is processed locally in your browser and is not uploaded to a server. Credit-based jobs for larger files may use a secure backend with short-lived processing.",
+      "For free-tier jobs, your PDF is processed locally in your browser and never uploaded to a server. The file is not stored or shared.",
   },
   {
-    question: "How many pages can I remove at once?",
+    question: "Can I remove pages from a PDF on Mac?",
     answer:
-      "You can remove as many pages as you like within the file limits. Free jobs support up to 200 pages, and larger jobs can support up to 500 pages.",
+      "Yes. Because the tool runs in your browser, it works the same way on Mac, Windows, Linux, iPhone, and Android.",
   },
   {
-    question: "Does this work on Mac, Windows, and mobile?",
+    question: "Can I remove pages from a PDF on iPhone?",
     answer:
-      "Yes. The tool runs in any modern web browser, so it works on macOS, Windows, Linux, iOS, and Android.",
+      "Yes. Open the site in Safari or any mobile browser, upload the PDF, select the pages, and download the trimmed file.",
   },
   {
-    question: "Will the output PDF have a watermark?",
+    question: "Will the new PDF have a watermark?",
     answer:
-      "No. The downloaded PDF does not contain a watermark, and the page layout of the remaining pages is preserved.",
+      "No. The cleaned PDF does not include any watermark or added branding.",
+  },
+  {
+    question: "Can I delete blank pages from a PDF?",
+    answer:
+      "Yes. After uploading, simply click the blank pages in the preview to mark them for removal, then download the result.",
+  },
+  {
+    question: "What happens if my PDF is larger than 20 MB?",
+    answer:
+      "Files larger than 20 MB or 200 pages may require credits. You will see the option before any processing begins.",
+  },
+  {
+    question: "Can I remove multiple pages at once?",
+    answer:
+      "Yes. You can select individual pages or a continuous range, and remove them all in one download.",
+  },
+  {
+    question: "Is there a limit on how many PDFs I can process?",
+    answer:
+      "The free tier is based on file size and page count per file, not on the number of files you process.",
   },
 ];
 

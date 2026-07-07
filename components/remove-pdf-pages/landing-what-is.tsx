@@ -11,7 +11,7 @@ export function RemovePdfWhatIs() {
             A PDF page remover lets you delete selected pages from a PDF file and save the cleaned result. Everything happens locally in your browser, so your document never leaves your device unless you choose to process a larger file with credits.
           </p>
           <p className="mt-3 text-sm leading-6 text-slate-600">
-            This is useful for stripping blank pages, removing outdated sections, or trimming a long report down to only the pages you need.
+            This is useful for stripping blank pages, removing outdated sections, or trimming a long report down to only the pages you need. Unlike desktop software, there is nothing to install, and you can use it on any computer or phone with an internet connection. It is also free for most everyday documents.
           </p>
         </div>
       </div>
