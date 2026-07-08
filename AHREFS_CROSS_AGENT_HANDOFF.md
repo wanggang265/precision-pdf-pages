@@ -21,11 +21,11 @@
 |---|---|---|---|---|
 | 2.1 | **Git push**：本地 3 个 commit 未推到 `origin main` | 阻塞代码真源同步 | 后端 / 用户 | 🔴 待处理 |
 | 2.2 | **未提交文件清理**：工作区有 6 个源码文件 + 2 个未跟踪文件 | 需要先确认哪些保留/提交 | 前端 / 用户 | 🔴 待确认 |
-| 2.3 | **SEO 描述翻译**：SEO 给的是中文描述，需翻译成英文并由前端替换 | 需要 SEO 输入 → 前端输出 | 前端 + SEO | 🟡 待处理 |
-| 2.4 | **首页 CTA 指向**：当前首页主 CTA 指向 noindex 的 `/workspace/`，SEO 建议改为 `/remove-pdf-pages/` | 前端独立可改 | 前端 | 🟡 待处理 |
-| 2.5 | **博客标题与正文数量不一致**：标题写 10 款，正文只有 8 款 | 内容/前端 | 前端 / SEO | 🟡 待处理 |
+| 2.3 | **SEO 描述翻译**：SEO 给的是中文描述，需翻译成英文并由前端替换 | 需要 SEO 输入 → 前端输出 | 前端 + SEO | ✅ 已完成（代码已验证） |
+| 2.4 | **首页 CTA 指向**：首页主 CTA 已由 `/workspace/` 改为 `/remove-pdf-pages/` | 前端独立可改 | 前端 | ✅ 代码已完成，生产待部署 |
+| 2.5 | **博客标题与正文数量不一致**：标题已由“10 Best”改为“8 Best” | 内容/前端 | 前端 / SEO | ✅ 已完成（代码已验证） |
 | 2.6 | **Skill 重复**：后端创建了 `nextjs-sitemap-noindex`，前端可能已有类似 skill | 需要前后端对齐 | 后端 + 前端 | 🟡 待处理 |
-| 2.7 | **SEO 报告更新**：原报告未把 `/checkout/success/`、`/checkout/cancel/` 列为当前 noindex 页面 | 需要 SEO 更新报告 | SEO | ✅ 已完成 |
+| 2.7 | **SEO 报告更新**：原报告已更新加入 `/checkout/success/`、`/checkout/cancel/` | 需要 SEO 更新报告 | SEO | ✅ 已完成（但报告里 CTA/描述长度数据为旧快照，见 zhongshu 复核） |
 | 2.8 | **Ahrefs 复测**：部署后重新运行审计并提交 GSC | 等上面全部完成后 | 用户 / SEO | 🔵 待开始 |
 
 ---
@@ -327,12 +327,51 @@ npm run build
 
 ## 7. 最终验收（zhongshu 使用）
 
-- [ ] 所有 index 页面 meta description 英文版 ≤ 160 字符；核心页面 `/remove-pdf-pages/` 、 `/compress-pdf/` 已落在 150–160 区间，其余偏短页面作为后续迭代优化。
+- [ ] 所有 index 页面 meta description 英文版 150–160 字符（代码已验证，生产待部署）。
 - [ ] sitemap 中只包含 index 页面，无 `/workspace/`、`/checkout/success/`、`/checkout/cancel/`。
 - [ ] `/workspace/`、`/checkout/success/`、`/checkout/cancel/` 均输出 `noindex, follow`。
-- [ ] 首页主 CTA 不再唯一指向 `/workspace/`。
-- [ ] 博客标题与正文工具数量一致。
+- [ ] 首页主 CTA 不再唯一指向 `/workspace/`（代码已验证，生产待部署）。
+- [ ] 博客标题与正文工具数量一致（代码已验证，生产待部署）。
 - [ ] 所有 commit 已 push 到 `origin main`。
 - [ ] 工作区无未提交/未跟踪的意外文件。
 - [ ] Skill 重复已处理。
 - [ ] Ahrefs 重新审计通过。
+
+---
+
+## 8. zhongshu 复核（2026-07-08）
+
+> 以下为协调人对三份 Agent 报告的交叉验证，修正了部分状态不一致之处。
+
+### 代码层实际验证
+
+| 检查项 | 结果 |
+|---|---|
+| 所有 11 个 index 页面 meta description | 均在 **150–160 字符**，代码已实现 |
+| `/` description | 160 字符：`Remove PDF Pages: free online PDF tools to delete, split, merge, extract, and compress PDFs...` |
+| `/remove-pdf-pages/` description | 154 字符 |
+| `/compress-pdf/` description | 158 字符 |
+| `首页` 主工具卡片链接 | `home-tool-grid.tsx` 主链接已为 `/remove-pdf-pages/`，`/workspace/` 为二级入口 |
+| `博客` 标题 | 已为 `8 Best Free PDF Page Removers (2025)`，与正文 8 款一致 |
+| sitemap | 本地 `out/sitemap.xml` 不含 `/workspace/`、`/checkout/success/`、`/checkout/cancel/` |
+| noindex 页面 | `/workspace/`、`/checkout/success/`、`/checkout/cancel/` 均输出 `noindex, follow` |
+
+### 生产环境实际验证
+
+| 检查项 | 结果 |
+|---|---|
+| 生产首页 `/workspace/` 链接 | 仍有 6 处 `/workspace/` 链接，`/remove-pdf-pages/` 仅 2 处 → **生产环境尚未部署最新前端代码** |
+| 生产博客标题 | 待部署后验证 |
+| 生产 sitemap | 仅 11 个 URL，不含 noindex 页面 → 后端旧部署仍有效 |
+
+### 待完成问题（尚未全部 [GO]）
+
+1. **Git push**：当前共 5 个本地 commit 未推送，需用户手动执行 `git push origin main`。
+2. **生产部署**：前端代码改动完成后，需重新部署到 Cloudflare Worker（`precision-pdf-pages`），以使生产环境同步。
+3. **未提交文件清理**：工作区仍有 4 个组件文件 + `AHREFS_SEO_FIX_REPORT.md` + `PROMPT_SYSTEM.md` 未提交，需确认是否一并 commit。
+4. **Skill 重复**：后端已创建 `nextjs-sitemap-noindex`，前端是否有类似 skill 尚待确认，但不阻碍 Ahrefs 上线。
+5. **Ahrefs/GSC 复测**：部署完成后 24–48 小时内重新运行审计。
+
+### 总体状态
+
+[NEEDS_REVIEW] — 代码层已全部完成，尚需 push + 生产部署 + 最终复测，即可转 [GO]。
