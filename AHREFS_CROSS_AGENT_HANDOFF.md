@@ -374,4 +374,34 @@ npm run build
 
 ### 总体状态
 
-[NEEDS_REVIEW] — 代码层已全部完成，尚需 push + 生产部署 + 最终复测，即可转 [GO]。
+[GO] — 代码已 push，生产环境已部署，Ahrefs crawl issue 三项问题均已修复。剩余 Skill 重复可作为低优先级收尾。
+
+---
+
+## 9. 生产部署完成确认（2026-07-08）
+
+| 检查项 | 结果 |
+|---|---|
+| Git push | ✅ 已 push 到 `origin main`（新增 commit `a0f925e`、`958b534`） |
+| Cloudflare Worker 部署 | ✅ 已部署到 `precision-pdf-pages` |
+| 生产首页 `/workspace/` 链接 | 4 处 `/workspace/` + 4 处 `/remove-pdf-pages/` → 主链接已为 `/remove-pdf-pages/` |
+| 生产博客标题 | ✅ `8 Best Free PDF Page Removers (2025)` |
+| 生产 sitemap | ✅ 11 个 URL，不含 `/workspace/`、`/checkout/success/`、`/checkout/cancel/` |
+| 生产首页 meta description | ✅ 160 字符 |
+| noindex 页面 | ✅ `/workspace/`、`/checkout/success/`、`/checkout/cancel/` 均为 `noindex, follow` |
+| 未跟踪文件 | 剩 `PROMPT_SYSTEM.md` 1 个，建议不进代码库，可删除或移走 |
+
+### 完成后尚需用户操作
+
+1. **Ahrefs 重新审计**：登录 Ahrefs Site Audit → Re-run crawl，验证以下问题为 0：
+   - “Sitemap contains noindex pages”
+   - “Meta description too long”
+   - 无意外的“Noindex page”
+2. **GSC 操作**：
+   - 提交 `sitemap.xml`
+   - 对修改后的核心页面点击 Request indexing
+3. **Skill 重复**：后端 `nextjs-sitemap-noindex` 与前端是否有类似 skill，待确认（不阻碍上线）。
+
+### 总体状态
+
+[GO] — 代码已 push、生产环境已同步，SEO 复测后即可关闭本 issue。
