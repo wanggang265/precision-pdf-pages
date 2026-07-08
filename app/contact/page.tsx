@@ -7,7 +7,7 @@ import { buildMetadata, buildWebPageSchema, SITE_URL } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Contact Remove PDF Pages — Support & Billing",
   description:
-    "Contact Remove PDF Pages for product support, billing and refund questions, privacy concerns, and partnership or integration opportunities today.",
+    "Contact Remove PDF Pages for product support, billing help, privacy questions, or partnership opportunities. We usually reply within 1–2 business days.",
   canonical: "/contact/",
   keywords: ["contact remove pdf pages", "pdf tools support", "billing support"],
 });
@@ -15,7 +15,7 @@ export const metadata = buildMetadata({
 const contactSchema = buildWebPageSchema({
   name: "Contact Remove PDF Pages",
   description:
-    "Contact Remove PDF Pages for product support, billing and refund questions, privacy concerns, and partnership or integration opportunities today.",
+    "Contact Remove PDF Pages for product support, billing help, privacy questions, or partnership opportunities. We usually reply within 1–2 business days.",
   url: `${SITE_URL}/contact/`,
 });
 

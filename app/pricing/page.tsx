@@ -6,7 +6,7 @@ import { buildMetadata, buildWebPageSchema, SITE_URL } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "PDF Tools Pricing \u2014 Pay-As-You-Go Credits",
   description:
-    "Simple pay-as-you-go pricing for Remove PDF Pages. Buy credits once and use them anytime for larger PDF jobs. No subscriptions, no monthly fees.",
+    "Simple pay-as-you-go credits for Remove PDF Pages. Buy once, use anytime, no subscription. Unlock larger PDF processing without monthly fees or hidden charges.",
   canonical: "/pricing/",
   keywords: ["pdf tools pricing", "pdf credits", "pay as you go pdf", "remove pdf pages pricing"],
 });
@@ -14,7 +14,7 @@ export const metadata = buildMetadata({
 const pricingSchema = buildWebPageSchema({
   name: "PDF Tools Pricing",
   description:
-    "Simple pay-as-you-go pricing for Remove PDF Pages. Buy credits once and use them anytime for larger PDF jobs. No subscriptions, no monthly fees.",
+    "Simple pay-as-you-go credits for Remove PDF Pages. Buy once, use anytime, no subscription. Unlock larger PDF processing without monthly fees or hidden charges.",
   url: `${SITE_URL}/pricing/`,
 });
 

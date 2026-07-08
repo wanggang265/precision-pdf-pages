@@ -15,7 +15,7 @@ interface User {
 }
 
 const tools = [
-  { href: "/workspace/", label: "Remove PDF Pages" },
+  { href: "/remove-pdf-pages/", label: "Remove PDF Pages" },
   { href: "/split-pdf/", label: "Split PDF" },
   { href: "/merge-pdf/", label: "Merge PDF" },
   { href: "/extract-pdf-pages/", label: "Extract PDF Pages" },
@@ -33,6 +33,7 @@ const footerColumns = [
       { label: "How it works", href: "/#how-it-works" },
       { label: "Pricing", href: "/#limits" },
       { label: "FAQ", href: "/#faq" },
+      { label: "Blog", href: "/blog/best-free-pdf-page-removers/" },
     ],
   },
   {

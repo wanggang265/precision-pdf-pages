@@ -6,7 +6,7 @@ import { buildMetadata, buildSoftwareApplicationSchema, SITE_URL } from "@/lib/s
 export const metadata = buildMetadata({
   title: "Split PDF Online — Free Browser-Based PDF Splitter",
   description:
-    "Split a PDF into multiple files by page ranges, right in your browser. No upload to any server — fast, private, and free.",
+    "Split PDFs by page ranges in your browser, free. No upload needed — files are processed locally for privacy. Works on Windows, Mac, and mobile with no signup.",
   canonical: "/split-pdf/",
   keywords: ["split pdf", "pdf splitter", "split pdf online", "pdf page splitter"],
 });
@@ -14,7 +14,7 @@ export const metadata = buildMetadata({
 const splitPdfSchema = buildSoftwareApplicationSchema({
   name: "Split PDF",
   description:
-    "Split a PDF into multiple files by page ranges, right in your browser. No upload to any server — fast, private, and free.",
+    "Split PDFs by page ranges in your browser, free. No upload needed — files are processed locally for privacy. Works on Windows, Mac, and mobile with no signup.",
   url: `${SITE_URL}/split-pdf/`,
   featureList: [
     "Split PDF by page ranges",

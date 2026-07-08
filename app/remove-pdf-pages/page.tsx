@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { JsonLdScript } from "@/components/json-ld";
 import { SiteShell } from "@/components/site-shell";
 import { RemovePdfCta } from "@/components/remove-pdf-pages/landing-cta";
@@ -13,7 +14,7 @@ import { buildMetadata, buildSoftwareApplicationSchema, SITE_URL } from "@/lib/s
 export const metadata = buildMetadata({
   title: "Remove Pages from PDF — Free Online PDF Page Remover (2026)",
   description:
-    "Remove pages from any PDF in seconds. No signup, no upload, and no watermarks. Free for files up to 20 MB and 200 pages. Works on Mac, Windows, and mobile.",
+    "Remove pages from any PDF online, free and fast. No upload, no watermark, no signup. Works on Windows, Mac, and mobile for PDFs up to 20 MB and 200 pages.",
   canonical: "/remove-pdf-pages/",
   keywords: [
     "remove pages from pdf",
@@ -27,7 +28,7 @@ export const metadata = buildMetadata({
 const softwareSchema = buildSoftwareApplicationSchema({
   name: "Remove PDF Pages",
   description:
-    "Remove pages from any PDF in seconds. No signup, no upload, and no watermarks. Free for files up to 20 MB and 200 pages. Works on Mac, Windows, and mobile.",
+    "Remove pages from any PDF online, free and fast. No upload, no watermark, no signup. Works on Windows, Mac, and mobile for PDFs up to 20 MB and 200 pages.",
   url: `${SITE_URL}/remove-pdf-pages/`,
   featureList: [
     "Remove PDF pages",
@@ -68,7 +69,7 @@ const faqPageSchema = {
     name: item.question,
     acceptedAnswer: {
       "@type": "Answer",
-      text: item.answer,
+      text: item.answerText || item.answer,
     },
   })),
 };
@@ -103,6 +104,27 @@ export default function RemovePdfPagesPage() {
       <RemovePdfUseCases />
       <RemovePdfWhyChoose />
       <RemovePdfFaq />
+      <section className="mx-auto w-full max-w-7xl px-5 pb-12 sm:px-6 lg:px-8">
+        <div className="rounded-[24px] border border-slate-200 bg-white p-5 shadow-[0_6px_18px_rgba(15,23,42,0.04)] sm:p-6">
+          <div className="max-w-3xl">
+            <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Related reading</div>
+            <h2 className="mt-3 text-xl font-semibold tracking-tight text-slate-950 sm:text-2xl">
+              Looking for the best free PDF page remover?
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              We tested 8 popular free PDF page removers on real documents and compared speed, privacy, and output quality. See the results in our full review.
+            </p>
+            <div className="mt-5">
+              <Link
+                href="/blog/best-free-pdf-page-removers/"
+                className="inline-flex items-center rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+              >
+                Read the comparison →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
       <RemovePdfCta />
     </SiteShell>
   );

@@ -8,9 +8,9 @@ const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 const PUBLISHED_DATE = "2026-07-07";
 
 export const metadata = buildMetadata({
-  title: "10 Best Free PDF Page Removers (2025) — Tested & Compared",
+  title: "8 Best Free PDF Page Removers (2025) — Tested & Compared",
   description:
-    "We tested 8 free PDF page removers on real documents. See which tool is fastest, safest, and keeps your files private. Results inside.",
+    "We tested 8 free PDF page removers on real documents and compared speed, privacy, ease of use, and limits. Find the best tool for your needs in our 2025 review.",
   canonical: PAGE_PATH,
   keywords: [
     "best free PDF page remover",
@@ -24,9 +24,9 @@ export const metadata = buildMetadata({
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: "10 Best Free PDF Page Removers (2025) — Tested & Compared",
+  headline: "8 Best Free PDF Page Removers (2025) — Tested & Compared",
   description:
-    "We tested 8 free PDF page removers on real documents. See which tool is fastest, safest, and keeps your files private.",
+    "We tested 8 free PDF page removers on real documents and compared speed, privacy, ease of use, and limits. Find the best tool for your needs in our 2025 review.",
   image: `${SITE_URL}/og-image.png`,
   author: {
     "@type": "Organization",
@@ -344,7 +344,7 @@ export default function BestFreePdfPageRemoversPage() {
                 Tested & Compared
               </div>
               <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
-                10 Best Free PDF Page Removers (2025)
+                8 Best Free PDF Page Removers (2025)
               </h1>
               <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
                 Deleting pages from a PDF should not require a paid subscription, a software install, or uploading your file to a stranger&apos;s server. We tested the most popular free PDF page removers on real documents — text reports, scanned pages, forms, large files, and even password-protected PDFs — to find the fastest, safest, and easiest options.

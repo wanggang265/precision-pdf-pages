@@ -6,7 +6,7 @@ import { buildMetadata, buildSoftwareApplicationSchema, SITE_URL } from "@/lib/s
 export const metadata = buildMetadata({
   title: "Merge PDF Online — Combine PDFs Free in Your Browser",
   description:
-    "Merge multiple PDFs into one document instantly. Upload your files, arrange the order, and download the combined PDF — no server upload needed.",
+    "Merge multiple PDFs into one document in your browser, free. No upload needed — files are processed locally for privacy. Works on Windows, Mac, and mobile.",
   canonical: "/merge-pdf/",
   keywords: ["merge pdf", "combine pdf", "merge pdf online", "pdf merger"],
 });
@@ -14,7 +14,7 @@ export const metadata = buildMetadata({
 const mergePdfSchema = buildSoftwareApplicationSchema({
   name: "Merge PDF",
   description:
-    "Merge multiple PDFs into one document instantly. Upload your files, arrange the order, and download the combined PDF — no server upload needed.",
+    "Merge multiple PDFs into one document in your browser, free. No upload needed — files are processed locally for privacy. Works on Windows, Mac, and mobile.",
   url: `${SITE_URL}/merge-pdf/`,
   featureList: [
     "Merge multiple PDFs into one",

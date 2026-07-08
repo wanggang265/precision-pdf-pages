@@ -7,7 +7,7 @@ import { buildMetadata, buildWebPageSchema, SITE_URL } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Terms of Service — Usage Rules & Disclaimer",
   description:
-    "Read the Remove PDF Pages terms of service. Learn the usage rules, disclaimers, and prohibited behavior for our online PDF page removal tool.",
+    "Read the Remove PDF Pages terms of service. Learn the rules, disclaimers, and prohibited uses for our online PDF tools before you start using the service.",
   canonical: "/terms/",
   keywords: ["terms of service", "remove pdf pages terms", "usage rules"],
 });
@@ -15,7 +15,7 @@ export const metadata = buildMetadata({
 const termsSchema = buildWebPageSchema({
   name: "Terms of Service",
   description:
-    "Read the Remove PDF Pages terms of service. Learn the usage rules, disclaimers, and prohibited behavior for our online PDF page removal tool.",
+    "Read the Remove PDF Pages terms of service. Learn the rules, disclaimers, and prohibited uses for our online PDF tools before you start using the service.",
   url: `${SITE_URL}/terms/`,
 });
 

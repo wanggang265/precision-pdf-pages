@@ -2,11 +2,11 @@ import Link from "next/link";
 
 const tools = [
   {
-    href: "/workspace/",
+    href: "/remove-pdf-pages/",
     title: "Remove PDF Pages",
     description: "Delete pages you do not need from any PDF.",
     badge: "Core tool",
-    learnMore: "/remove-pdf-pages/",
+    openWorkspace: "/workspace/",
   },
   {
     href: "/split-pdf/",
@@ -62,9 +62,9 @@ export function HomeToolGrid() {
                 <Link href={tool.href} className="text-sm font-semibold text-blue-600 hover:text-blue-700">
                   Open tool →
                 </Link>
-                {tool.learnMore ? (
-                  <Link href={tool.learnMore} className="text-sm font-semibold text-slate-500 hover:text-slate-700">
-                    Learn more
+                {tool.openWorkspace ? (
+                  <Link href={tool.openWorkspace} className="text-sm font-semibold text-slate-500 hover:text-slate-700">
+                    Open workspace
                   </Link>
                 ) : null}
               </div>

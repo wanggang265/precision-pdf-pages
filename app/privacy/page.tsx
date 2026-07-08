@@ -7,7 +7,7 @@ import { buildMetadata, buildWebPageSchema, SITE_URL } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Privacy Policy \u2014 How We Handle Your Data",
   description:
-    "Read the Remove PDF Pages privacy policy. Learn what data we collect, how we use it, and how we keep your PDF processing secure and private.",
+    "Learn how Remove PDF Pages handles your data. PDF processing runs locally in your browser — no upload, no long-term storage. Read our full privacy policy.",
   canonical: "/privacy/",
   keywords: ["privacy policy", "remove pdf pages privacy", "data handling"],
 });
@@ -15,7 +15,7 @@ export const metadata = buildMetadata({
 const privacySchema = buildWebPageSchema({
   name: "Privacy Policy",
   description:
-    "Read the Remove PDF Pages privacy policy. Learn what data we collect, how we use it, and how we keep your PDF processing secure and private.",
+    "Learn how Remove PDF Pages handles your data. PDF processing runs locally in your browser — no upload, no long-term storage. Read our full privacy policy.",
   url: `${SITE_URL}/privacy/`,
 });
 

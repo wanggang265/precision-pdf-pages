@@ -6,7 +6,7 @@ import { buildMetadata, buildSoftwareApplicationSchema, SITE_URL } from "@/lib/s
 export const metadata = buildMetadata({
   title: "Compress PDF Online — Reduce File Size Free in Browser",
   description:
-    "Compress PDF files quickly and privately. Upload your PDF, remove unused metadata, and download a smaller file — all processed locally in your browser.",
+    "Compress PDFs online to reduce file size, free. No upload needed — files are processed locally in your browser for privacy. Works on Windows, Mac, and mobile.",
   canonical: "/compress-pdf/",
   keywords: ["compress pdf", "reduce pdf size", "compress pdf online", "pdf compressor"],
 });
@@ -14,7 +14,7 @@ export const metadata = buildMetadata({
 const compressPdfSchema = buildSoftwareApplicationSchema({
   name: "Compress PDF",
   description:
-    "Compress PDF files quickly and privately. Upload your PDF, remove unused metadata, and download a smaller file — all processed locally in your browser.",
+    "Compress PDFs online to reduce file size, free. No upload needed — files are processed locally in your browser for privacy. Works on Windows, Mac, and mobile.",
   url: `${SITE_URL}/compress-pdf/`,
   featureList: [
     "Compress PDF files locally",
