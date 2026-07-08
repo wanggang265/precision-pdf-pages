@@ -60,7 +60,7 @@ npx wrangler d1 execute removepdfpages-db --command="SELECT user_id, email, crea
 - 后端是否错误地把 `CREEM_API_KEY` 返回给前端？前端绝不应持有此 key。
 
 ### 3.2 处理规范
-- 后端调用 Creem 时，只在 `Authorization: Bearer <CREEM_API_KEY>` 或 `x-api-key: <CREEM_API_KEY>` 中使用 key（按 Creem 实际文档）。
+- 后端调用 Creem 时，只在 `Authorization: Bearer <CREEM_API_KEY> ` 或 `x-api-key: <CREEM_API_KEY>` 中使用 key（按 Creem 实际文档）。
 - 后端必须对 Creem 401 做统一包装：
   ```json
   { "error": "Payment provider authentication failed", "code": "CREEM_AUTH_FAILED" }
@@ -73,7 +73,7 @@ npx wrangler d1 execute removepdfpages-db --command="SELECT user_id, email, crea
 wrangler secret list --name removepdfpages-workers | grep CREEM
 
 # 测试 Creem API 连通性（仅后端安全环境）
-curl -s -H "Authorization: Bearer <CREEM_API_KEY>" https://api.creem.io/v1/products
+curl -s -H "x-api-key: <CREEM_API_KEY>" https://api.creem.io/v1/products
 ```
 
 ## 4. 通用排查 SOP（任何 401 都可以走）
