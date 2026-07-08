@@ -7,6 +7,7 @@ export const metadata = buildMetadata({
   description: "Your checkout was cancelled. No charges were made.",
   canonical: "/checkout/cancel/",
   keywords: ["checkout cancelled", "pdf tools checkout"],
+  noindex: true,
 });
 
 const checkoutCancelSchema = buildWebPageSchema({

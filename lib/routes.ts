@@ -42,6 +42,8 @@ export const SITE_ROUTES: SiteRoute[] = [
   // Noindex pages are listed here for completeness but filtered out of the sitemap.
   // Keep this in sync with the `noindex` metadata in each page's `page.tsx`.
   { path: "/workspace/", noindex: true, changefreq: "weekly", priority: 0.5 },
+  { path: "/checkout/success/", noindex: true, changefreq: "yearly", priority: 0.3 },
+  { path: "/checkout/cancel/", noindex: true, changefreq: "yearly", priority: 0.3 },
 ];
 
 /** All routes that should be indexed and therefore appear in the sitemap. */

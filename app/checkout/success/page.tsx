@@ -7,6 +7,7 @@ export const metadata = buildMetadata({
   description: "Your checkout was completed and your credits are ready in your account.",
   canonical: "/checkout/success/",
   keywords: ["checkout complete", "pdf tools credits"],
+  noindex: true,
 });
 
 const checkoutSuccessSchema = buildWebPageSchema({
