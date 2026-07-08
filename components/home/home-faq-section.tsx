@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const faqItems = [
   {
     question: "How does it work?",
@@ -14,6 +16,22 @@ const faqItems = [
   {
     question: "Do I need an account?",
     answer: "Anonymous use is available for lightweight tasks. Sign-in can be used for heavier jobs.",
+  },
+  {
+    question: "What is the best free PDF page remover?",
+    answer: (
+      <>
+        For privacy-sensitive documents, a browser-based tool like{" "}
+        <Link href="/blog/best-free-pdf-page-removers/" className="text-blue-600 hover:text-blue-700 hover:underline">
+          removepdfpages.net
+        </Link>{" "}
+        is ideal because your file never leaves your device. See our comparison of the{" "}
+        <Link href="/blog/best-free-pdf-page-removers/" className="text-blue-600 hover:text-blue-700 hover:underline">
+          best free PDF page removers
+        </Link>{" "}
+        for the full test results.
+      </>
+    ),
   },
 ];
 

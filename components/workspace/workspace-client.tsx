@@ -85,6 +85,7 @@ export function WorkspaceClient() {
   const [anonId, setAnonId] = useState<string | null>(null);
   const resultUrlRef = useRef<string | null>(null);
   const uploadTimers = useRef<number[]>([]);
+  const pickerRef = useRef<HTMLDivElement | null>(null);
 
   const selectedCount = pages.filter((page) => page.selected).length;
   const pageCount = pages.length;
@@ -230,6 +231,11 @@ export function WorkspaceClient() {
         typeLabel: "PDF",
       });
       scheduleStatus("ready", 700);
+      window.setTimeout(() => {
+        if (pickerRef.current) {
+          pickerRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 800);
     } catch {
       setStatus("unsupported");
       setPages([]);
@@ -338,6 +344,7 @@ export function WorkspaceClient() {
       />
 
       <WorkspacePagePicker
+        ref={pickerRef}
         pages={pages}
         file={sourceFile || undefined}
         blocked={blocked}

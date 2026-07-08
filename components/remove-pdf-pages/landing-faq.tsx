@@ -1,8 +1,19 @@
+import Link from "next/link";
+
 export const removePdfFaqItems = [
   {
     question: "How do I remove pages from a PDF for free?",
-    answer:
-      "Open the Remove PDF Pages tool, upload your file, select the pages you want to delete, and download the cleaned PDF. The free tier covers files up to 20 MB and 200 pages.",
+    answer: (
+      <>
+        Open the Remove PDF Pages tool, upload your file, select the pages you want to delete, and download the cleaned PDF. The free tier covers files up to 20 MB and 200 pages. If you are comparing options, see our guide to the{" "}
+        <Link href="/blog/best-free-pdf-page-removers/" className="text-blue-600 hover:text-blue-700 hover:underline">
+          best free PDF page removers
+        </Link>{" "}
+        tested on real documents.
+      </>
+    ),
+    answerText:
+      "Open the Remove PDF Pages tool, upload your file, select the pages you want to delete, and download the cleaned PDF. The free tier covers files up to 20 MB and 200 pages. If you are comparing options, see our guide to the best free PDF page removers tested on real documents.",
   },
   {
     question: "Can I delete pages from a PDF without Adobe Acrobat?",

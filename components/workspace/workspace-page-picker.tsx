@@ -1,5 +1,6 @@
 "use client";
 
+import { forwardRef } from "react";
 import { LazyPdfThumbnail } from "@/components/pdf-preview/lazy-pdf-thumbnail";
 
 type WorkspacePage = {
@@ -17,9 +18,10 @@ type WorkspacePagePickerProps = {
   onClearSelection: () => void;
 };
 
-export function WorkspacePagePicker({ pages, file, blocked, onToggle, onSelectAll, onClearSelection }: WorkspacePagePickerProps) {
+export const WorkspacePagePicker = forwardRef<HTMLDivElement, WorkspacePagePickerProps>(
+  function WorkspacePagePicker({ pages, file, blocked, onToggle, onSelectAll, onClearSelection }, ref) {
   return (
-    <div className="space-y-3">
+    <div ref={ref} className="space-y-3">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h3 className="text-base font-semibold text-slate-950">Page picker</h3>
@@ -97,4 +99,4 @@ export function WorkspacePagePicker({ pages, file, blocked, onToggle, onSelectAl
       </div>
     </div>
   );
-}
+});
