@@ -19,12 +19,12 @@
 
 | # | 问题 | 依赖关系 | 负责人 | 状态 |
 |---|---|---|---|---|
-| 2.1 | **Git push**：本地 3 个 commit 未推到 `origin main` | 阻塞代码真源同步 | 后端 / 用户 | 🔴 待处理 |
-| 2.2 | **未提交文件清理**：工作区有 6 个源码文件 + 2 个未跟踪文件 | 需要先确认哪些保留/提交 | 前端 / 用户 | 🔴 待确认 |
+| 2.1 | **Git push**：本地 3 个 commit 未推到 `origin main` | 阻塞代码真源同步 | 后端 / 用户 | ✅ 已处理（已 push 5 个 commit） |
+| 2.2 | **未提交文件清理**：工作区有 4 个组件文件 + 2 份报告未跟踪 | 需确认是否 commit | 前端 / 用户 | ✅ 已处理（已 commit） |
 | 2.3 | **SEO 描述翻译**：SEO 给的是中文描述，需翻译成英文并由前端替换 | 需要 SEO 输入 → 前端输出 | 前端 + SEO | ✅ 已完成（代码已验证） |
-| 2.4 | **首页 CTA 指向**：首页主 CTA 已由 `/workspace/` 改为 `/remove-pdf-pages/` | 前端独立可改 | 前端 | ✅ 代码已完成，生产待部署 |
-| 2.5 | **博客标题与正文数量不一致**：标题已由“10 Best”改为“8 Best” | 内容/前端 | 前端 / SEO | ✅ 已完成（代码已验证） |
-| 2.6 | **Skill 重复**：后端创建了 `nextjs-sitemap-noindex`，前端可能已有类似 skill | 需要前后端对齐 | 后端 + 前端 | 🟡 待处理 |
+| 2.4 | **首页 CTA 指向**：首页主 CTA 已由 `/workspace/` 改为 `/remove-pdf-pages/` | 前端独立可改 | 前端 | ✅ 已完成（生产已验证） |
+| 2.5 | **博客标题与正文数量不一致**：标题已由“10 Best”改为“8 Best” | 内容/前端 | 前端 / SEO | ✅ 已完成（生产已验证） |
+| 2.6 | **Skill 重复**：后端创建了 `nextjs-sitemap-noindex`，前端可能已有类似 skill | 需要前后端对齐 | 后端 + 前端 | ✅ 已核查，不重叠，可并存 |
 | 2.7 | **SEO 报告更新**：原报告已更新加入 `/checkout/success/`、`/checkout/cancel/` | 需要 SEO 更新报告 | SEO | ✅ 已完成（但报告里 CTA/描述长度数据为旧快照，见 zhongshu 复核） |
 | 2.8 | **Ahrefs 复测**：部署后重新运行审计并提交 GSC | 等上面全部完成后 | 用户 / SEO | 🔵 待开始 |
 
@@ -389,7 +389,8 @@ npm run build
 | 生产 sitemap | ✅ 11 个 URL，不含 `/workspace/`、`/checkout/success/`、`/checkout/cancel/` |
 | 生产首页 meta description | ✅ 160 字符 |
 | noindex 页面 | ✅ `/workspace/`、`/checkout/success/`、`/checkout/cancel/` 均为 `noindex, follow` |
-| 未跟踪文件 | 剩 `PROMPT_SYSTEM.md` 1 个，建议不进代码库，可删除或移走 |
+| 未跟踪文件 | ✅ `PROMPT_SYSTEM.md` 已移至 `/home/ubuntu/PROMPT_SYSTEM.md`，不在代码库内 |
+| Skill 重复 | ✅ 已核查：前端 `chuangkou` 无专门 sitemap/noindex skill；唯一相关 skill 为 `nextjs-static-seo-per-page`（范围更广，涵盖 per-page SEO + sitemap 交叉检查），与后端 `nextjs-sitemap-noindex`（专注 sitemap 生成）不重叠，可合并也可并存。 |
 
 ### 完成后尚需用户操作
 
@@ -400,7 +401,6 @@ npm run build
 2. **GSC 操作**：
    - 提交 `sitemap.xml`
    - 对修改后的核心页面点击 Request indexing
-3. **Skill 重复**：后端 `nextjs-sitemap-noindex` 与前端是否有类似 skill，待确认（不阻碍上线）。
 
 ### 总体状态
 
