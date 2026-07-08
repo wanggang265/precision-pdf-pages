@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@/components/analytics";
+import { truncateDescription } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,8 +22,9 @@ export const metadata: Metadata = {
     default: "Remove PDF Pages — Delete PDF Pages Online Free",
     template: "%s | Remove PDF Pages",
   },
-  description:
-    "Delete unwanted pages from any PDF online. Upload your file, pick the pages to remove, and download the cleaned PDF in seconds — no signup needed.",
+  description: truncateDescription(
+    "Delete unwanted pages from any PDF online. Upload your file, pick the pages to remove, and download the cleaned PDF in seconds — no signup needed."
+  ),
   keywords: ["remove pdf pages", "delete pdf pages", "pdf page remover", "online pdf editor", "remove pages from pdf"],
   authors: [{ name: "Precision PDF" }],
   creator: "Precision PDF",

@@ -13,7 +13,7 @@ import { buildMetadata, buildSoftwareApplicationSchema, SITE_URL } from "@/lib/s
 export const metadata = buildMetadata({
   title: "Remove Pages from PDF — Free Online PDF Page Remover (2026)",
   description:
-    "Remove pages from any PDF in seconds. No signup, no upload to a server, and no watermarks. Free for files up to 20 MB and 200 pages. Works on Mac, Windows, and mobile.",
+    "Remove pages from any PDF in seconds. No signup, no upload, and no watermarks. Free for files up to 20 MB and 200 pages. Works on Mac, Windows, and mobile.",
   canonical: "/remove-pdf-pages/",
   keywords: [
     "remove pages from pdf",
@@ -27,7 +27,7 @@ export const metadata = buildMetadata({
 const softwareSchema = buildSoftwareApplicationSchema({
   name: "Remove PDF Pages",
   description:
-    "Remove pages from any PDF in seconds. No signup, no upload to a server, and no watermarks. Free for files up to 20 MB and 200 pages. Works on Mac, Windows, and mobile.",
+    "Remove pages from any PDF in seconds. No signup, no upload, and no watermarks. Free for files up to 20 MB and 200 pages. Works on Mac, Windows, and mobile.",
   url: `${SITE_URL}/remove-pdf-pages/`,
   featureList: [
     "Remove PDF pages",

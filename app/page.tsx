@@ -13,7 +13,7 @@ import { buildMetadata, buildSoftwareApplicationSchema, SITE_URL } from "@/lib/s
 export const metadata = buildMetadata({
   title: "Free PDF Tools — Remove, Split, Merge, Extract, Compress",
   description:
-    "Free online PDF tools: remove pages, split, merge, extract pages, and compress PDFs. All processing happens in your browser — fast, private, and no signup needed.",
+    "Free online PDF tools: remove, split, merge, extract, and compress PDFs. All processing runs in your browser — fast, private, and no signup needed.",
   canonical: "/",
   keywords: ["pdf tools", "remove pdf pages", "split pdf", "merge pdf", "extract pdf", "compress pdf"],
 });
@@ -21,7 +21,7 @@ export const metadata = buildMetadata({
 const homeSchema = buildSoftwareApplicationSchema({
   name: "Remove PDF Pages",
   description:
-    "Free online PDF tools: remove pages, split, merge, extract pages, and compress PDFs. All processing happens in your browser — fast, private, and no signup needed.",
+    "Free online PDF tools: remove, split, merge, extract, and compress PDFs. All processing runs in your browser — fast, private, and no signup needed.",
   url: SITE_URL,
   featureList: [
     "Remove PDF pages",

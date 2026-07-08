@@ -13,13 +13,33 @@ export interface PageSeoConfig {
 const SITE_NAME = "Remove PDF Pages";
 const DEFAULT_OG_IMAGE = "/og-image.png";
 
+/** Maximum length for a meta description. Search engines typically truncate after ~160 characters. */
+export const MAX_META_DESCRIPTION_LENGTH = 160;
+
+/**
+ * Truncates a description to fit within the recommended meta description length,
+ * cutting at the last full word and appending an ellipsis if it was shortened.
+ */
+export function truncateDescription(text: string, maxChars = MAX_META_DESCRIPTION_LENGTH): string {
+  if (text.length <= maxChars) return text;
+
+  const truncated = text.slice(0, maxChars);
+  const lastSpace = truncated.lastIndexOf(" ");
+
+  // Avoid a single long token that has no spaces before the cutoff.
+  if (lastSpace <= 0) return truncated.trimEnd() + "...";
+
+  return truncated.slice(0, lastSpace).trimEnd() + "...";
+}
+
 export function buildMetadata(config: PageSeoConfig): Metadata {
   const ogImageUrl = config.ogImageUrl || DEFAULT_OG_IMAGE;
   const ogImageAlt = config.ogImageAlt || config.title;
+  const description = truncateDescription(config.description);
 
   return {
     title: { absolute: config.title },
-    description: config.description,
+    description,
     keywords: config.keywords,
     alternates: {
       canonical: config.canonical,
