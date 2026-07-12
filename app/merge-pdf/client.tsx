@@ -31,7 +31,7 @@ export function MergePdfClient() {
           actionLabel="Merge PDFs"
           toolType="merge"
           validate={({ files }) => {
-            if (files.length < 2) return "Select at least two PDFs to merge";
+            if (files.length === 0) return "Upload at least one PDF to merge";
             return null;
           }}
           getOutputName={() => "merged.pdf"}
@@ -72,6 +72,16 @@ export function MergePdfClient() {
             );
           }}
           process={async ({ files }): Promise<ProcessedResult> => {
+            if (files.length === 1) {
+              const file = files[0];
+              const bytes = new Uint8Array(await file.arrayBuffer());
+              return {
+                bytes,
+                fileName: file.name,
+                summary: `Kept single PDF · ${bytes.byteLength > 0 ? "ready for download" : ""}`,
+              };
+            }
+
             const merged = await PDFDocument.create();
             let totalPages = 0;
 
