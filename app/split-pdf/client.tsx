@@ -6,29 +6,61 @@ import { PdfToolClient } from "@/components/pdf-tool/pdf-tool-client";
 import { PdfToolPageLayout } from "@/components/pdf-tool/pdf-tool-page-layout";
 import type { ProcessedResult } from "@/components/pdf-tool/pdf-tool-types";
 
-function parsePageRanges(input: string, maxPage: number): number[][] {
+type PageRangeResult = {
+  ranges: number[][];
+  error: string | null;
+};
+
+function parsePageRanges(input: string, maxPage: number): PageRangeResult {
   const ranges: number[][] = [];
   const parts = input.split(",").map((p) => p.trim()).filter(Boolean);
+
+  if (parts.length === 0) {
+    return { ranges: [], error: "Enter at least one page range" };
+  }
 
   for (const part of parts) {
     if (part.includes("-")) {
       const [startStr, endStr] = part.split("-");
-      const start = Math.max(1, parseInt(startStr.trim(), 10));
-      const end = Math.min(maxPage, parseInt(endStr.trim(), 10));
-      if (!Number.isNaN(start) && !Number.isNaN(end) && start <= end) {
-        const range: number[] = [];
-        for (let i = start; i <= end; i++) range.push(i - 1);
-        ranges.push(range);
+      const start = parseInt(startStr.trim(), 10);
+      const end = parseInt(endStr.trim(), 10);
+
+      if (Number.isNaN(start) || Number.isNaN(end)) {
+        return { ranges: [], error: `Invalid range: "${part}"` };
       }
+      if (start < 1) {
+        return { ranges: [], error: `Page numbers must be at least 1 (got ${start} in "${part}")` };
+      }
+      if (end > maxPage) {
+        return { ranges: [], error: `Range "${part}" exceeds the document's ${maxPage} pages` };
+      }
+      if (start > end) {
+        return { ranges: [], error: `Start page must be less than or equal to end page in "${part}"` };
+      }
+
+      const range: number[] = [];
+      for (let i = start; i <= end; i++) range.push(i - 1);
+      ranges.push(range);
     } else {
       const page = parseInt(part, 10);
-      if (!Number.isNaN(page) && page >= 1 && page <= maxPage) {
-        ranges.push([page - 1]);
+      if (Number.isNaN(page)) {
+        return { ranges: [], error: `Invalid page number: "${part}"` };
       }
+      if (page < 1) {
+        return { ranges: [], error: `Page numbers must be at least 1 (got ${page})` };
+      }
+      if (page > maxPage) {
+        return { ranges: [], error: `Page ${page} exceeds the document's ${maxPage} pages` };
+      }
+      ranges.push([page - 1]);
     }
   }
 
-  return ranges;
+  if (ranges.length === 0) {
+    return { ranges: [], error: "No valid page ranges found" };
+  }
+
+  return { ranges, error: null };
 }
 
 export function SplitPdfClient() {
@@ -50,6 +82,9 @@ export function SplitPdfClient() {
           }}
           renderOptions={({ files, status, pages, options, setOptions }) => {
             const blocked = !["ready", "unsupported", "over-limit", "credits"].includes(status);
+            const rangeResult = pages.length > 0
+              ? parsePageRanges(String(options || ""), pages.length)
+              : { ranges: [], error: null };
             return (
               <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-[0_4px_12px_rgba(15,23,42,0.03)]">
                 <label htmlFor="split-ranges" className="block text-sm font-semibold text-slate-950">
@@ -70,14 +105,21 @@ export function SplitPdfClient() {
                 {pages.length > 0 ? (
                   <p className="mt-2 text-xs text-slate-500">Total pages detected: {pages.length}</p>
                 ) : null}
+                {rangeResult.error ? (
+                  <p className="mt-2 rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700">
+                    {rangeResult.error}
+                  </p>
+                ) : null}
               </div>
             );
           }}
-          validate={({ files, options }) => {
+          validate={({ files, options, pages }) => {
             if (files.length === 0) return "Upload a PDF first";
             const input = String(options || "").trim();
             if (!input) return "Enter at least one page range";
-            return null;
+            if (pages.length === 0) return null;
+            const { error } = parsePageRanges(input, pages.length);
+            return error;
           }}
           getOutputName={(files) => {
             const baseName = files[0]?.name.replace(/\.pdf$/i, "") || "document";
@@ -88,7 +130,8 @@ export function SplitPdfClient() {
             const arrayBuffer = await file.arrayBuffer();
             const source = await PDFDocument.load(arrayBuffer);
             const pageCount = source.getPageCount();
-            const ranges = parsePageRanges(String(options || ""), pageCount);
+            const { ranges, error } = parsePageRanges(String(options || ""), pageCount);
+            if (error) throw new Error(error);
 
             const zip = new JSZip();
             const baseName = file.name.replace(/\.pdf$/i, "") || "document";
