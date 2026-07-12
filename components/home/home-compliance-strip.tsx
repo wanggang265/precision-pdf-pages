@@ -9,7 +9,7 @@ export function HomeComplianceStrip() {
           <span>•</span>
           <span>Cookie</span>
         </div>
-        <p className="mt-3 text-sm text-slate-600">Analytics off by default. Compliance links stay visible but lightweight.</p>
+        <p className="mt-3 text-sm text-slate-600">We use privacy-first analytics to improve this tool. Compliance links stay visible but lightweight.</p>
       </div>
     </section>
   );
