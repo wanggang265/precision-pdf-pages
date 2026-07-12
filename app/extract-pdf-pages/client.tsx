@@ -20,7 +20,6 @@ export function ExtractPdfClient() {
             if (files.length === 0) return "Upload a PDF first";
             const selectedCount = pages.filter((p) => p.selected).length;
             if (selectedCount === 0) return "Select at least one page to extract";
-            if (selectedCount === pages.length) return "Select fewer than all pages to extract";
             return null;
           }}
           getOutputName={(files) => {
