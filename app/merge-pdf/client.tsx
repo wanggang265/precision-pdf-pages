@@ -78,10 +78,10 @@ export function MergePdfClient() {
             for (const file of files) {
               const arrayBuffer = await file.arrayBuffer();
               const source = await PDFDocument.load(arrayBuffer);
-              const pageIndexes = Array.from({ length: source.getPageCount() }, (_, i) => i);
+              const pageIndexes = Array.from({ length: source.getPages().length }, (_, i) => i);
               const copiedPages = await merged.copyPages(source, pageIndexes);
               copiedPages.forEach((page) => merged.addPage(page));
-              totalPages += source.getPageCount();
+              totalPages += source.getPages().length;
             }
 
             const bytes = await merged.save();

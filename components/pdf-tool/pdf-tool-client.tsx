@@ -225,7 +225,7 @@ export function PdfToolClient({
     for (const file of selected) {
       const arrayBuffer = await file.arrayBuffer();
       const pdf = await PDFDocument.load(arrayBuffer);
-      totalPages += pdf.getPageCount();
+      totalPages += pdf.getPages().length;
       totalSize += file.size;
     }
     return { totalPages, totalSize };

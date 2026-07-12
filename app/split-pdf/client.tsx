@@ -129,7 +129,7 @@ export function SplitPdfClient() {
             const file = files[0];
             const arrayBuffer = await file.arrayBuffer();
             const source = await PDFDocument.load(arrayBuffer);
-            const pageCount = source.getPageCount();
+            const pageCount = source.getPages().length;
             const { ranges, error } = parsePageRanges(String(options || ""), pageCount);
             if (error) throw new Error(error);
 

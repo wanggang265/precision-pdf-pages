@@ -219,7 +219,7 @@ export function WorkspaceClient() {
       const arrayBuffer = await file.arrayBuffer();
       setStatus("scanning");
       const pdf = await PDFDocument.load(arrayBuffer);
-      const pageCountValue = pdf.getPageCount();
+      const pageCountValue = pdf.getPages().length;
       setPages(createPages(pageCountValue, false));
       setSourceBytes(new Uint8Array(arrayBuffer));
       setSourceFileName(file.name);

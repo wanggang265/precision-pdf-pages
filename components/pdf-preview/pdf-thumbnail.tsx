@@ -33,6 +33,9 @@ export function PdfThumbnail({ file, pageNumber, cacheKey, width = 140, classNam
       try {
         const arrayBuffer = await file.arrayBuffer();
         const pdf = await getCachedDocument(arrayBuffer, cacheKey || file.name);
+        if (pageNumber < 1 || pageNumber > pdf.numPages) {
+          throw new Error(`Page ${pageNumber} is out of range (1-${pdf.numPages})`);
+        }
         const page = await pdf.getPage(pageNumber);
 
         const viewport = page.getViewport({ scale: 1 });
