@@ -32,7 +32,7 @@ function parsePageRanges(input: string, maxPage: number): PageRangeResult {
         return { ranges: [], error: `Page numbers must be at least 1 (got ${start} in "${part}")` };
       }
       if (end > maxPage) {
-        return { ranges: [], error: `Range "${part}" exceeds the document's ${maxPage} pages` };
+        return { ranges: [], error: `Some page ranges exceed the document page count (${maxPage} page${maxPage === 1 ? "" : "s"})` };
       }
       if (start > end) {
         return { ranges: [], error: `Start page must be less than or equal to end page in "${part}"` };
@@ -50,7 +50,7 @@ function parsePageRanges(input: string, maxPage: number): PageRangeResult {
         return { ranges: [], error: `Page numbers must be at least 1 (got ${page})` };
       }
       if (page > maxPage) {
-        return { ranges: [], error: `Page ${page} exceeds the document's ${maxPage} pages` };
+        return { ranges: [], error: `Some page ranges exceed the document page count (${maxPage} page${maxPage === 1 ? "" : "s"})` };
       }
       ranges.push([page - 1]);
     }
