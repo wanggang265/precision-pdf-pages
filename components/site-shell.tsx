@@ -31,8 +31,9 @@ const footerColumns = [
     title: "Product",
     links: [
       { label: "How it works", href: "/#how-it-works" },
+      { label: "Tools", href: "/tools/" },
       { label: "Pricing", href: "/#limits" },
-      { label: "FAQ", href: "/#faq" },
+      { label: "FAQ", href: "/faq/" },
       { label: "Blog", href: "/blog/best-free-pdf-page-removers/" },
     ],
   },

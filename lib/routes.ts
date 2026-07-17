@@ -39,6 +39,8 @@ export const SITE_ROUTES: SiteRoute[] = [
   { path: "/privacy/", changefreq: "yearly", priority: 0.4 },
   { path: "/terms/", changefreq: "yearly", priority: 0.3 },
   { path: "/contact/", changefreq: "yearly", priority: 0.3 },
+  { path: "/faq/", changefreq: "monthly", priority: 0.7 },
+  { path: "/tools/", changefreq: "monthly", priority: 0.7 },
   // Noindex pages are listed here for completeness but filtered out of the sitemap.
   // Keep this in sync with the `noindex` metadata in each page's `page.tsx`.
   { path: "/workspace/", noindex: true, changefreq: "weekly", priority: 0.5 },
