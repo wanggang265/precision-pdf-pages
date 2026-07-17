@@ -31,6 +31,8 @@ export const SITE_ROUTES: SiteRoute[] = [
   { path: "/", changefreq: "weekly", priority: 1 },
   { path: "/remove-pdf-pages/", changefreq: "weekly", priority: 1 },
   { path: "/blog/best-free-pdf-page-removers/", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/how-to-remove-pages-from-pdf/", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/how-to-split-pdf/", changefreq: "monthly", priority: 0.8 },
   { path: "/split-pdf/", changefreq: "weekly", priority: 0.8 },
   { path: "/merge-pdf/", changefreq: "weekly", priority: 0.8 },
   { path: "/extract-pdf-pages/", changefreq: "weekly", priority: 0.8 },
