@@ -353,7 +353,7 @@ export default function BestFreePdfPageRemoversPage() {
                 Below is a side-by-side comparison, our real test data, and a clear recommendation for every use case.
               </p>
               <div className="mt-6">
-                <CtaButton href="/workspace/">Remove PDF Pages Now — Free</CtaButton>
+                <CtaButton href="/remove-pdf-pages/">Remove PDF Pages Now — Free</CtaButton>
               </div>
             </div>
           </div>
@@ -380,7 +380,7 @@ export default function BestFreePdfPageRemoversPage() {
                   <tr key={row.tool} className="hover:bg-slate-50/50">
                     <td className="px-4 py-3 font-semibold text-slate-950">
                       {row.tool === "removepdfpages.net" ? (
-                        <Link href="/workspace/" className="text-blue-600 hover:text-blue-700 hover:underline">
+                        <Link href="/remove-pdf-pages/" className="text-blue-600 hover:text-blue-700 hover:underline">
                           {row.tool}
                         </Link>
                       ) : (
@@ -399,7 +399,7 @@ export default function BestFreePdfPageRemoversPage() {
           </div>
           <p className="mt-4 text-sm leading-6 text-slate-600">
             <strong>Bottom line:</strong> If your file contains sensitive data, use a{" "}
-            <Link href="/workspace/" className="text-blue-600 hover:text-blue-700 hover:underline">
+            <Link href="/remove-pdf-pages/" className="text-blue-600 hover:text-blue-700 hover:underline">
               browser-based tool
             </Link>{" "}
             that processes locally. If you need advanced features and do not mind uploading,{" "}
@@ -414,7 +414,7 @@ export default function BestFreePdfPageRemoversPage() {
           <SectionH2>Our methodology for testing PDF page removers</SectionH2>
           <p className="mt-3 text-sm leading-6 text-slate-600">
             We ran 8 controlled tests on{" "}
-            <Link href="/workspace/" className="text-blue-600 hover:text-blue-700 hover:underline">
+            <Link href="/remove-pdf-pages/" className="text-blue-600 hover:text-blue-700 hover:underline">
               removepdfpages.net
             </Link>{" "}
             using a mix of real document types and edge cases. Each test followed the same workflow: upload the PDF, select pages to remove, download the result, and verify the output page count and content.
@@ -658,7 +658,7 @@ export default function BestFreePdfPageRemoversPage() {
           </ol>
           <p className="mt-4 text-sm leading-6 text-slate-600">
             For a{" "}
-            <Link href="/workspace/" className="text-blue-600 hover:text-blue-700 hover:underline">
+            <Link href="/remove-pdf-pages/" className="text-blue-600 hover:text-blue-700 hover:underline">
               browser-based tool
             </Link>
             , the entire process takes place locally and usually completes in under a second.
@@ -699,7 +699,7 @@ export default function BestFreePdfPageRemoversPage() {
             <h2 className="text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">Conclusion</h2>
             <p className="mx-auto mt-3 max-w-3xl text-sm leading-6 text-slate-600">
               After testing 8 real documents across multiple tools,{" "}
-              <Link href="/workspace/" className="text-blue-600 hover:text-blue-700 hover:underline">
+              <Link href="/remove-pdf-pages/" className="text-blue-600 hover:text-blue-700 hover:underline">
                 removepdfpages.net
               </Link>{" "}
               stands out as the best free option for privacy-conscious users who need fast, browser-based page removal. It handled text reports, scanned pages, forms, blank pages, and landscape PDFs with an average processing time of 0.07 seconds and no server upload for free-tier tasks.
@@ -711,7 +711,7 @@ export default function BestFreePdfPageRemoversPage() {
               Try removepdfpages.net for free — no signup, no upload, no watermark.
             </p>
             <div className="mt-5">
-              <CtaButton href="/workspace/">Remove PDF Pages Now — Free</CtaButton>
+              <CtaButton href="/remove-pdf-pages/">Remove PDF Pages Now — Free</CtaButton>
             </div>
           </div>
         </section>

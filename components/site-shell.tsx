@@ -39,16 +39,16 @@ const footerColumns = [
   {
     title: "Support",
     links: [
-      { label: "Contact", href: "/contact" },
+      { label: "Contact", href: "/contact/" },
       { label: "Refund", href: "mailto:billing@removepdfpages.net?subject=Refund%20request" },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Service", href: "/terms" },
-      { label: "Cookie", href: "/privacy#cookie" },
+      { label: "Privacy Policy", href: "/privacy/" },
+      { label: "Terms of Service", href: "/terms/" },
+      { label: "Cookie", href: "/privacy/#cookie" },
     ],
   },
 ];
@@ -141,16 +141,16 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 </div>
               ) : null}
             </div>
-            <Link href="/pricing" className="rounded-full px-3 py-1.5 transition-colors hover:bg-slate-100 hover:text-slate-950">
+            <Link href="/pricing/" className="rounded-full px-3 py-1.5 transition-colors hover:bg-slate-100 hover:text-slate-950">
               Pricing
             </Link>
             <Link href="/#faq" className="rounded-full px-3 py-1.5 transition-colors hover:bg-slate-100 hover:text-slate-950">
               FAQ
             </Link>
-            <Link href="/privacy" className="rounded-full px-3 py-1.5 transition-colors hover:bg-slate-100 hover:text-slate-950">
+            <Link href="/privacy/" className="rounded-full px-3 py-1.5 transition-colors hover:bg-slate-100 hover:text-slate-950">
               Privacy
             </Link>
-            <Link href="/terms" className="rounded-full px-3 py-1.5 transition-colors hover:bg-slate-100 hover:text-slate-950">
+            <Link href="/terms/" className="rounded-full px-3 py-1.5 transition-colors hover:bg-slate-100 hover:text-slate-950">
               Terms
             </Link>
           </nav>
@@ -193,7 +193,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               </button>
             )}
             <Link
-              href="/workspace"
+              href="/workspace/"
               className="inline-flex items-center rounded-full border border-blue-200 bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
             >
               Open workspace

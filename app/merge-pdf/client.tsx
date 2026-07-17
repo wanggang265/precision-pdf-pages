@@ -123,7 +123,7 @@ export function MergePdfClient() {
         { href: "/split-pdf/", title: "Split PDF", description: "Split a PDF into multiple files by page ranges." },
         { href: "/extract-pdf-pages/", title: "Extract PDF Pages", description: "Keep only the pages you need." },
         { href: "/compress-pdf/", title: "Compress PDF", description: "Reduce PDF file size in seconds." },
-        { href: "/workspace/", title: "Remove PDF Pages", description: "Delete pages you do not need." },
+        { href: "/remove-pdf-pages/", title: "Remove PDF Pages", description: "Delete pages you do not need." },
       ]}
       securityText="PDF merging is performed locally in your browser with pdf-lib. We never see, store, or transmit your documents."
     />

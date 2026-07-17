@@ -65,7 +65,7 @@ export function ExtractPdfClient() {
         { href: "/split-pdf/", title: "Split PDF", description: "Split a PDF into multiple files by page ranges." },
         { href: "/merge-pdf/", title: "Merge PDF", description: "Combine multiple PDFs into one file." },
         { href: "/compress-pdf/", title: "Compress PDF", description: "Reduce PDF file size in seconds." },
-        { href: "/workspace/", title: "Remove PDF Pages", description: "Delete pages you do not need." },
+        { href: "/remove-pdf-pages/", title: "Remove PDF Pages", description: "Delete pages you do not need." },
       ]}
       securityText="Page extraction runs entirely in your browser with pdf-lib. Your document is never transmitted to or stored on our servers."
     />

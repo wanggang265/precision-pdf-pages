@@ -174,7 +174,7 @@ export function SplitPdfClient() {
         { href: "/merge-pdf/", title: "Merge PDF", description: "Combine multiple PDFs into one file." },
         { href: "/extract-pdf-pages/", title: "Extract PDF Pages", description: "Keep only the pages you need." },
         { href: "/compress-pdf/", title: "Compress PDF", description: "Reduce PDF file size in seconds." },
-        { href: "/workspace/", title: "Remove PDF Pages", description: "Delete pages you do not need." },
+        { href: "/remove-pdf-pages/", title: "Remove PDF Pages", description: "Delete pages you do not need." },
       ]}
       securityText="All PDF splitting happens locally in your browser using pdf-lib. Your file contents never leave your device, and nothing is stored on our servers."
     />
